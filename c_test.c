@@ -46,7 +46,7 @@ int main(void)
 		printf("What number would you like to search?");
 		scanf("%d", &x);
     
-    	if (x == 70000)
+    	if (x == 700000000)
     		cont = false;
 		else
 		{
