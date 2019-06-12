@@ -63,6 +63,23 @@ public static void main(String args[])
          arrli.add(rand.nextInt(150));
          System.out.println(arrli.get(i));
      }
+     
+     for (int i = 0; i < n-1; i++) 
+            for (int j = 0; j < n-i-1; j++) 
+                if (arrli.get(j) > arrli.get(j+1)) 
+                { 
+                    // swap arr[j+1] and arr[i] 
+                    int temp = arrli.get(j); 
+                    arrli.set(j, arrli.get(j+1)); 
+                    arrli.set(j+1, temp); 
+                } 
+     
+     System.out.println("SORTED");
+      for (int i =0;i<n;i++){
+         System.out.println(arrli.get(i));
+     }
+    
+     
   while (true)
   {
        Scanner sc2 = new Scanner(System.in); // object for scanner
