@@ -46,7 +46,7 @@ void randomArray( int arr[],int inputSize){
 	int i =0;
 	for (i=0;i<inputSize;i++)
 	{
-		arr[i] = i + 1;
+		arr[i] = rand()%200;
 	}
 }
 int main() 
