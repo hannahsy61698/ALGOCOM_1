@@ -47,17 +47,25 @@ void randomArray( int arr[],int inputSize){
 		arr[i] = rand()%200;
 	}
 }
-int main(void) 
+int main() 
 { 
     //int arr[] = { 2, 3, 4, 10, 40 };
-	int inputSize;
+	int inputSize, result;
 	printf("what is input size?: ");
 	scanf("%d", &inputSize);
+	
 	int arr[inputSize];
 	randomArray(arr,inputSize);
 	bool  cont = true;
     int i = 0;
+    clock_t t;
+	clock_t end;
+    double temp;
+    double time_taken;
     
+    double start, done;
+    
+     
     for(i=0;i<inputSize;i++)
     	printf("%d \n", arr[i]);
     int x = 0;
@@ -72,27 +80,43 @@ int main(void)
     	if (x == 700000000)
     		cont = false;
 		else
-		{
-		clock_t t; 
-    	t = clock(); 
-    	int result = search(arr, n, x); 
-    	t = clock() - t; 
-    	double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
+		{ 
+    	t = clock();
+    	
+    	int result = search(arr, inputSize, x);
+    	
+		end = clock(); 
+		
+		start = (double) t;
+		done = (double) end;
+		
+		temp = done - start;
+		
+		printf("\n\n++++++++++++ \n\n%lf %lf\n\n", start, done);
+    	
+		time_taken = temp/CLOCKS_PER_SEC; // in seconds 
   
- 		printf("search (linear): %f seconds\n", time_taken);
+ 		printf("search (linear): %lf seconds\n", time_taken);
     	(result == -1) ? printf("Element is not present in array") 
           	         : printf("Element is present at index %d", 
                             result); 
                             
     	printf("\n\n");
     	
-    	clock_t t2; 
-    	t2 = clock(); 
+    	t = clock(); 
     	int result2 = binarySearch(arr, 0, n - 1, x); 
-		t2 = clock() - t2; 
-    	double time_taken2 = ((double)t)/CLOCKS_PER_SEC; // in seconds 
+		end = clock();
+		
+		start = (double) t;
+		done = (double) end;
+		
+		temp = done - start;
+		
+		printf("\n\n++++++++++++ \n\n%lf %lf\n\n", start, done);
+    	
+		time_taken = temp/CLOCKS_PER_SEC; // in seconds 
   
- 		printf("search (binary): %f seconds\n", time_taken2);
+ 		printf("search (binary): %lf seconds\n", time_taken);
     	
     	(result2 == -1) ? printf("Element is not present"
 							" in array") 
