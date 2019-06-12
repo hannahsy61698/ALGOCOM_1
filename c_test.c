@@ -17,6 +17,29 @@ int search(int arr[], int n, int x)
     return -1; 
 } 
   
+  int binarySearch(int arr[], int l, int r, int x) 
+{ 
+	while (l <= r) { 
+		int m = l + (r - l) / 2; 
+
+		// Check if x is present at mid 
+		if (arr[m] == x) 
+			return m; 
+
+		// If x greater, ignore left half 
+		if (arr[m] < x) 
+			l = m + 1; 
+
+		// If x is smaller, ignore right half 
+		else
+			r = m - 1; 
+	} 
+
+	// if we reach here, then element was 
+	// not present 
+	return -1; 
+} 
+
 void randomArray( int arr[],int inputSize){
 	int i =0;
 	for (i=0;i<inputSize;i++)
@@ -32,11 +55,11 @@ int main(void)
 	scanf("%d", &inputSize);
 	int arr[inputSize];
 	randomArray(arr,inputSize);
-	int i=0;
-	for(i=0;i<inputSize;i++)
-		printf("%d \n", arr[i]);
 	bool  cont = true;
+    int i = 0;
     
+    for(i=0;i<inputSize;i++)
+    	printf("%d \n", arr[i]);
     int x = 0;
     int n = sizeof(arr) / sizeof(arr[0]); 
     
@@ -50,19 +73,35 @@ int main(void)
     		cont = false;
 		else
 		{
-			clock_t t; 
+		clock_t t; 
     	t = clock(); 
     	int result = search(arr, n, x); 
     	t = clock() - t; 
     	double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
   
- 		printf("search: %f seconds\n", time_taken);
+ 		printf("search (linear): %f seconds\n", time_taken);
     	(result == -1) ? printf("Element is not present in array") 
           	         : printf("Element is present at index %d", 
                             result); 
                             
-    	printf("\n");
-   
+    	printf("\n\n");
+    	
+    	clock_t t2; 
+    	t2 = clock(); 
+    	int result2 = binarySearch(arr, 0, n - 1, x); 
+		t2 = clock() - t2; 
+    	double time_taken2 = ((double)t)/CLOCKS_PER_SEC; // in seconds 
+  
+ 		printf("search (binary): %f seconds\n", time_taken2);
+    	
+    	(result2 == -1) ? printf("Element is not present"
+							" in array") 
+					: printf("Element is present at "
+							"index %d", 
+							result); 
+	
+   		printf("\n\n");
+    
 		 } 
 	}
 	return 0; 
