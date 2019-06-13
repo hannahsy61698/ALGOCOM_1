@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javaapplication1;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.concurrent.TimeUnit;
 
-/**
- *
- * @author Hannah Sy
- */
 public class JavaApplication1 {
 
     public static int search(ArrayList<Integer> list, int x) 
@@ -49,7 +41,7 @@ public class JavaApplication1 {
         return -1; 
     }   
     
-public static void main(String args[]) 
+public static void main(String args[]) throws InterupptedException
 { 
     Scanner sc = new Scanner(System.in); // object for scanner
 		System.out.print("Enter your No: ");
@@ -57,6 +49,8 @@ public static void main(String args[])
      ArrayList<Integer> arrli = new ArrayList<Integer>(n); 
      
      Random rand = new Random();
+     
+     
      
      for (int i =0;i<n;i++){
          
@@ -85,15 +79,32 @@ public static void main(String args[])
        Scanner sc2 = new Scanner(System.in); // object for scanner
 		System.out.print("Enter your No to search: ");
 		int x = sc2.nextInt();
-      
+		
+	long startTime = System.nanoTime();
+		
     int result = search(arrli, x);
+    
+    long endTime = System.nanoTime();
+    
+    long timeElapsed = endTime - startTime;
+    
+    long seconds = timeElapsed / 1000000000;
+    
     System.out.println("Linear Search:");
     if(result == -1) 
         System.out.println("Element is not present in array"); 
     else
         System.out.println("Element is present at index " + result); 
 
+    long startTime = System.nanoTime();
+    
     int result2 = binarySearch(arrli, x);
+    
+    long endTime = System.nanoTime();
+    
+    long timeElapsed = endTime - startTime;
+    
+    long seconds = timeElapsed / 1000000000;
     
     System.out.println("Binary Search:");
         if (result2 == -1) 
